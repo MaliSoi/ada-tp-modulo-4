@@ -1,6 +1,8 @@
 import { HStack, Text, IconButton } from "@chakra-ui/react";
 import {CheckIcon, EditIcon, DeleteIcon} from "@chakra-ui/icons";
 
+
+
 const Todo = ({ todo, toggleComplete, editTodo, deleteTodo }) => {
     return (
         <HStack

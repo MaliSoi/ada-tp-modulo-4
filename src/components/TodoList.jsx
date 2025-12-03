@@ -1,4 +1,6 @@
-import { VStack } from "@chakra-ui/react"
+import { VStack } from "@chakra-ui/react";
+import Todo from "./Todo";
+
 
 const TodoList = ({ todos, toggleComplete, editTodo, deleteTodo}) => {
     return (
