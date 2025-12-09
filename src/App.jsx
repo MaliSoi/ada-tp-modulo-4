@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { VStack, Box, Select} from "@chakra-ui/react";
+import { VStack, Box } from "@chakra-ui/react";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 
@@ -9,27 +9,18 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   //Filter
-  const[filter, setFilter] = useState(() => {
-  // cargamos el filter desde localStorage si existe
-    const storedFilter = localStorage.getItem("filter");
-    return storedFilter ? storedFilter : "all";
-  });
+  const[filter, setFilter] = useState("all");
 
-//cargar desde localstorage al inicio
+  //cargar desde localstorage al inicio
   useEffect(() => {
     const stored = localStorage.getItem("todos");
     if (stored) setTodos(JSON.parse(stored));
   }, []);
 
-  // guardar todos en localStorage cada vez que cambien
+  //guardar cada vez que cambia el estado
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   },[todos]);
-
-  // guardar filter en localStorage cada vez que cambie
-  useEffect(() => {
-    localStorage.setItem("filter", filter);
-  }, [filter]);
 
   //agregar tarea
   const addTodo = (text) => {
@@ -38,33 +29,35 @@ function App() {
       text,
       completed:false,
     };
-    setTodos((prev) => [...prev, newTodo]);
+    setTodos([...todos, newTodo]);
   };
 
   //completar tarea
   const toggleComplete = (id) => {
-    setTodos ((prev) =>
-      prev.map((t) => (t.id === id ? {...t, completed: !t.completed } : t))
+    setTodos(
+      todos.map((t) =>
+      t.id === id ? {...t, completed: !t.completed } : t
+    )
   );
   };
 
   //eliminar tarea
+
   const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((t) => t.id !==id));
+    setTodos(todos.filter((t) => t.id !==id));
   };
   
   //editar tarea
-  const editTodo = (id, newText) => {
-    if(!newText || !newText.trim()) return;
-
-    setTodos((prev) =>
-      prev.map((t) =>
-      t.id === id ? {...t, text: newText.trim() } : t
+  const editTodo = (id) => {
+    const newText = prompt("Nuevo texto:");
+    if(!newText?.trim())return;
+    setTodos(
+      todos.map((t) =>
+      t.id === id ? {...t, text: newText } : t
     )
     );
   };
 
-  //aplicar filtro
   const filteredTodos = todos.filter((t) => {
     if(filter === "completed") return t.completed;
     if(filter === "pending")return !t.completed;
@@ -73,28 +66,23 @@ function App() {
 
   return (
     <Box maxW="400px" mx="auto" mt="50px" p={4}>
-      <VStack spacing={6} w="100%">
+      <VStack spacing={6}>
         <Form addTodo={addTodo}/>
         
-        {/* SELECT DEL FILTRO */}
-        <Select 
-        value={filter} 
-        onChange={(e) => setFilter (e.target.value)}
-        maxW="220px"
-        aria-label="Fitrar tareas"
-        >
+        
+        <select value={filter} onChange={(e) => setFilter (e.target.value)}>
         <option value="all">Todas</option>
         <option value="completed">Completadas</option>
         <option value="pending">Pendientes</option>
-        </Select>
+        </select>
 
-        <TodoList 
-        todos={filteredTodos}
+        <TodoList
+        todos={todos}
         toggleComplete={toggleComplete}
         editTodo={editTodo}
         deleteTodo={deleteTodo}
         />
-
+        
     </VStack>
     </Box>
    
