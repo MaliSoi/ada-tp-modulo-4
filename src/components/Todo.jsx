@@ -1,40 +1,41 @@
 import { HStack, Text, IconButton } from "@chakra-ui/react";
-import {CheckIcon, EditIcon, DeleteIcon} from "@chakra-ui/icons";
+import { CheckIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
+const Todo = ({ todo, toggleComplete, deleteTodo, onEdit }) => {
+  return (
+    <HStack
+      w="100%"
+      p={3}
+      borderWidth="1px"
+      borderRadius="md"
+      justifyContent="space-between"
+    >
+      <Text as={todo.completed ? "s" : undefined}>{todo.text}</Text>
 
+      <HStack spacing={1}>
+        <IconButton
+          icon={<CheckIcon />}
+          colorScheme="green"
+          size="sm"
+          onClick={() => toggleComplete(todo.id)}
+        />
 
-const Todo = ({ todo, toggleComplete, editTodo, deleteTodo }) => {
-    return (
-        <HStack
-        w="100%"
-        p={3}
-        borderWidth="1px"
-        borderRadius="md"
-        justifyContent="space-between"
-        >
-         <Text as={todo.completed ? "s" : undefined}>{todo.text}</Text>
-     <HStack spacing={1}>
         <IconButton
-        icon={<CheckIcon />}
-        colorScheme="green"
-        size="sm"
-        onClick={() => toggleComplete(todo.id)}
+          icon={<EditIcon />}
+          colorScheme="yellow"
+          size="sm"
+          onClick={() => onEdit(todo)}  
         />
+
         <IconButton
-        icon={<EditIcon />}
-        colorScheme="yellow"
-        size="sm"
-        onClick={() => editTodo(todo.id)}
+          icon={<DeleteIcon />}
+          colorScheme="red"
+          size="sm"
+          onClick={() => deleteTodo(todo.id)}
         />
-        <IconButton
-        icon={<DeleteIcon />}
-        colorScheme="red"
-        size="sm"
-        onClick={() => deleteTodo(todo.id)}
-        />
-     </HStack>
+      </HStack>
     </HStack>
-    );
+  );
 };
 
 export default Todo;
