@@ -8,6 +8,9 @@ import TodoList from "./components/TodoList";
 function App() {
   const [todos, setTodos] = useState([]);
 
+  //Filter
+  const[filter, setFilter] = useState("all");
+
   //cargar desde localstorage al inicio
   useEffect(() => {
     const stored = localStorage.getItem("todos");
@@ -55,16 +58,31 @@ function App() {
     );
   };
 
+  const filteredTodos = todos.filter((t) => {
+    if(filter === "completed") return t.completed;
+    if(filter === "pending")return !t.completed;
+    return true;
+  });
+
   return (
     <Box maxW="400px" mx="auto" mt="50px" p={4}>
       <VStack spacing={6}>
         <Form addTodo={addTodo}/>
+        
+        
+        <select value={filter} onChange={(e) => setFilter (e.target.value)}>
+        <option value="all">Todas</option>
+        <option value="completed">Completadas</option>
+        <option value="pending">Pendientes</option>
+        </select>
+
         <TodoList
         todos={todos}
         toggleComplete={toggleComplete}
         editTodo={editTodo}
         deleteTodo={deleteTodo}
         />
+        
     </VStack>
     </Box>
    

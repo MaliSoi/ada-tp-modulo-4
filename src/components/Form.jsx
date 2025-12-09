@@ -20,7 +20,7 @@ const Form = ({addTodo}) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             />
-            <Button type="submit" colorScheme="blue">
+            <Button type="submit" colorScheme="blue" size="md" px={8} py={3} >
                 Agregar Tarea
             </Button>
         </HStack>
