@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { VStack, Box, Select, Modal, ModalOverlay, ModalContent,
-  ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Input } from "@chakra-ui/react";
+import {
+  VStack, Box, Select, Modal, ModalOverlay, ModalContent,
+  ModalHeader, ModalCloseButton, ModalBody, ModalFooter,
+  Button, Input
+} from "@chakra-ui/react";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 
@@ -46,7 +49,7 @@ function App() {
     setTodos((prev) => prev.filter((t) => t.id !== id));
   };
 
-  // editar tarea (limpia)
+  // editar tarea
   const editTodo = (id, newText) => {
     if (!newText || !newText.trim()) return;
     setTodos((prev) =>
@@ -86,7 +89,6 @@ function App() {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           maxW="220px"
-          aria-label="Filtrar tareas"
         >
           <option value="all">Todas</option>
           <option value="completed">Completadas</option>
@@ -94,14 +96,13 @@ function App() {
         </Select>
 
         <TodoList
-          todos={filteredTodos}           // <- pasar los filtrados
+          todos={filteredTodos}
           toggleComplete={toggleComplete}
-          editTodo={editTodo}
           deleteTodo={deleteTodo}
-          onEdit={onEdit}                 // <- pasar onEdit para abrir modal
+          onEdit={onEdit}
         />
 
-        {/* Modal de edición en App */}
+        {/* Modal de edición */}
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} isCentered>
           <ModalOverlay />
           <ModalContent>
@@ -131,4 +132,3 @@ function App() {
 }
 
 export default App;
-
