@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   VStack, Box, Select, Modal, ModalOverlay, ModalContent,
   ModalHeader, ModalCloseButton, ModalBody, ModalFooter,
-  Button, Input
+  Button, Input, Text
 } from "@chakra-ui/react";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
@@ -100,11 +100,11 @@ const handleDelete = () => {
   return (
     <Box maxW="600px" mx="auto" mt="50px" p={6} bg="white" borderRadius="lg" boxShadow="sm">
       
-     <Text fontSize="3xl" fontWeight="bold" mb={2}>
+     <Text fontSize="3xl" fontWeight="bold" mb={2} textAlign="center">
      Mis tareas
      </Text>
 
-     <Text fontSize="sm" color="gray.500" mb={6}>
+     <Text fontSize="sm" color="gray.500" mb={6} textAlign="center">
      Simple. Limpio. Al punto.
      </Text>
 

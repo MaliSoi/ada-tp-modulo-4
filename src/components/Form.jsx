@@ -1,23 +1,23 @@
 import {useState} from "react";
-import { Button, VStack, Input, FormControl, FormErrorMessage, Text } from "@chakra-ui/react";
+import { Button, VStack, Input, FormControl, FormErrorMessage } from "@chakra-ui/react";
 
 
 
 const Form = ({addTodo}) => {
-    const [input, setInput] = useState("");
+    const [text, setText] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!input.trim()) {
+        if (!text.trim()) {
       setError("La tarea no puede estar vacía");
       return;
     }
 
     setError("");
-    addTodo(input);
-    setInput("");
+    addTodo(text);
+    setText("");
     };
 
     return (
@@ -26,10 +26,14 @@ const Form = ({addTodo}) => {
             <FormControl isInvalid={!!error} W="100%">
             <VStack spacing={1} align="start" w="100%">
             <Input
-            placeholder="Nueva Tarea"
-            value={input}
+            placeholder="Agregar una nueva tarea..."
+            bg="gray.50"
+            border="1px solid"
+            borderColor="gray.200"
+            _focus={{ borderColor: "black", boxShadow: "none" }}
+            value={text}
             onChange={(e) => {
-                setInput(e.target.value);
+                setText(e.target.value);
                 if (error) setError(""); // limpiar error al escribir
           }}
           />
@@ -37,6 +41,7 @@ const Form = ({addTodo}) => {
             <FormErrorMessage minH="20px">
             {error}
             </FormErrorMessage>
+            
             </VStack>
             </FormControl>
 
