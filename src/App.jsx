@@ -7,6 +7,8 @@ import {
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { EditIcon } from "@chakra-ui/icons";
+import { Divider } from "@chakra-ui/react";
+
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -120,6 +122,8 @@ const handleDelete = () => {
           <option value="completed">Completadas</option>
           <option value="pending">Pendientes</option>
         </Select>
+
+        <Divider />
 
         <TodoList
           todos={filteredTodos}

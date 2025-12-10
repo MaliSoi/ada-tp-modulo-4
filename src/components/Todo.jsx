@@ -14,25 +14,31 @@ const Todo = ({ todo, toggleComplete, onEdit, confirmDelete }) => {
 
       <HStack spacing={1}>
         <IconButton
-          icon={<CheckIcon />}
-          colorScheme="green"
-          size="sm"
-          onClick={() => toggleComplete(todo.id)}
-        />
+  icon={<CheckIcon />}
+  size="sm"
+  colorScheme="green"
+  variant="solid"
+  borderRadius="full"
+  onClick={() => toggleComplete(todo.id)}
+/>
 
-        <IconButton
-          icon={<EditIcon />}
-          colorScheme="yellow"
-          size="sm"
-          onClick={() => onEdit(todo)}  
-        />
+<IconButton
+  icon={<EditIcon />}
+  size="sm"
+  colorScheme="yellow"
+  variant="solid"
+  borderRadius="full"
+  onClick={() => onEdit(todo)}
+/>
 
-        <IconButton
-          icon={<DeleteIcon />}
-          colorScheme="red"
-          size="sm"
-          onClick={() => confirmDelete(todo)}
-        />
+<IconButton
+  icon={<DeleteIcon />}
+  size="sm"
+  colorScheme="red"
+  variant="solid"
+  borderRadius="full"
+  onClick={() => confirmDelete(todo)}
+/>
       </HStack>
     </HStack>
   );
