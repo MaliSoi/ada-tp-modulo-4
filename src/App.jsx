@@ -6,10 +6,13 @@ import {
 } from "@chakra-ui/react";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
+import { EditIcon } from "@chakra-ui/icons";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [todoToDelete, setTodoToDelete] = useState(null);
 
   // modal / edición
   const [isOpen, setIsOpen] = useState(false);
@@ -80,8 +83,31 @@ function App() {
     setEditText("");
   };
 
+  //para abrir modal de confirmacion
+  const confirmDelete = (todo) => {
+  setTodoToDelete(todo);
+  setIsDeleteOpen(true);
+};
+
+//funcion que borra
+const handleDelete = () => {
+  if (!todoToDelete) return;
+  deleteTodo(todoToDelete.id);
+  setIsDeleteOpen(false);
+  setTodoToDelete(null);
+};
+
   return (
-    <Box maxW="400px" mx="auto" mt="50px" p={4}>
+    <Box maxW="600px" mx="auto" mt="50px" p={6} bg="white" borderRadius="lg" boxShadow="sm">
+      
+     <Text fontSize="3xl" fontWeight="bold" mb={2}>
+     Mis tareas
+     </Text>
+
+     <Text fontSize="sm" color="gray.500" mb={6}>
+     Simple. Limpio. Al punto.
+     </Text>
+
       <VStack spacing={6} w="100%">
         <Form addTodo={addTodo} />
 
@@ -98,34 +124,60 @@ function App() {
         <TodoList
           todos={filteredTodos}
           toggleComplete={toggleComplete}
+          editTodo={editTodo}
           deleteTodo={deleteTodo}
           onEdit={onEdit}
+          confirmDelete={confirmDelete}
         />
 
         {/* Modal de edición */}
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} isCentered>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Editar tarea</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Input
+         <ModalOverlay />
+         <ModalContent>
+         <ModalHeader>Editar tarea</ModalHeader>
+         <ModalCloseButton />
+         <ModalBody>
+          <Input
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
                 placeholder="Editar tarea..."
                 autoFocus
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button variant="ghost" mr={3} onClick={() => setIsOpen(false)}>
-                Cancelar
-              </Button>
-              <Button colorScheme="blue" onClick={saveEdit}>
-                Guardar
-              </Button>
-            </ModalFooter>
-          </ModalContent>
+         />
+        </ModalBody>
+        <ModalFooter>
+        <Button variant="ghost" mr={3} onClick={() => setIsOpen(false)}>
+        Cancelar
+        </Button>
+        <Button colorScheme="blue" onClick={saveEdit}>
+        Guardar
+        </Button>
+        </ModalFooter>
+        </ModalContent>
         </Modal>
+   
+        <Modal isOpen={isDeleteOpen} onClose={() => setIsDeleteOpen(false)} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+        <ModalHeader>Eliminar tarea</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+        ¿Seguro que querés eliminar esta tarea?
+        <br />
+        <strong>{todoToDelete?.text}</strong>
+        </ModalBody>
+
+        <ModalFooter>
+        <Button variant="ghost" mr={3} onClick={() => setIsDeleteOpen(false)}>
+         Cancelar
+        </Button>
+        <Button colorScheme="red" onClick={handleDelete}>
+        Eliminar
+        </Button>
+        </ModalFooter>
+        </ModalContent>
+        </Modal>
+
+
       </VStack>
     </Box>
   );

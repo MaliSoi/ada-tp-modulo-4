@@ -2,7 +2,7 @@ import { VStack } from "@chakra-ui/react";
 import Todo from "./Todo";
 
 
-const TodoList = ({ todos, toggleComplete, editTodo, deleteTodo, onEdit }) => {
+const TodoList = ({ todos, toggleComplete, editTodo, deleteTodo, onEdit, confirmDelete }) => {
     return (
         <VStack spacing={3} w="100%">
             {todos.map((todo) => (
@@ -13,6 +13,7 @@ const TodoList = ({ todos, toggleComplete, editTodo, deleteTodo, onEdit }) => {
                  editTodo={editTodo}
                  deleteTodo={deleteTodo}
                  onEdit={onEdit}
+                 confirmDelete={confirmDelete}
                  />
     ))}
         </VStack>

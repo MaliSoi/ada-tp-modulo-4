@@ -1,7 +1,7 @@
 import { HStack, Text, IconButton } from "@chakra-ui/react";
 import { CheckIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
-const Todo = ({ todo, toggleComplete, deleteTodo, onEdit }) => {
+const Todo = ({ todo, toggleComplete, onEdit, confirmDelete }) => {
   return (
     <HStack
       w="100%"
@@ -31,7 +31,7 @@ const Todo = ({ todo, toggleComplete, deleteTodo, onEdit }) => {
           icon={<DeleteIcon />}
           colorScheme="red"
           size="sm"
-          onClick={() => deleteTodo(todo.id)}
+          onClick={() => confirmDelete(todo)}
         />
       </HStack>
     </HStack>
