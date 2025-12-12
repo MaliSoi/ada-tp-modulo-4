@@ -41,6 +41,8 @@ README.md
 npm install
 npm run dev
 
+```
+
 ## 📸 Capturas de pantalla
 
 ### Pantalla principal
