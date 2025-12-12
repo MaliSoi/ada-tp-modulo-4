@@ -45,14 +45,14 @@ npm run dev
 
 
 ### Pantalla principal
-![Home](../screenshots/home.png)
+![Home](./screenshots/home.png)
 
 ### Modal de edición
-![Editar](../screenshots/modal-editar.png)
+![Editar](./screenshots/modal-editar.png)
 
 ### Modal de eliminación
-![Eliminar](../screenshots/modal-eliminar.png)
+![Eliminar](./screenshots/modal-eliminar.png)
 
 ### Tareas completadas
-![Completadas](../screenshots/tareas%20completadas.png)
+![Completadas](./screenshots/tareas%20completadas.png)
 
