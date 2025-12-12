@@ -43,16 +43,20 @@ npm run dev
 
 ## 📸 Capturas de pantalla
 
-
 ### Pantalla principal
-![Home]("./screenshots/home.png")
+![Home](./screenshots/home.png)
 
 ### Modal de edición
-![Editar]("./screenshots/modal-editar.png")
+![Editar](./screenshots/modal-editar.png)
 
 ### Modal de eliminación
-![Eliminar]("./screenshots/modal-eliminar.png")
+![Eliminar](./screenshots/modal-eliminar.png)
 
 ### Tareas completadas
-![Completadas]("./screenshots/tareas_completadas.png")
+![Completadas](./screenshots/tareas_completadas.png)
 
+## ✨ Autor
+
+**Malala Soifer**  
+Frontend Developer | React & Chakra UI  
+[LinkedIn](https://www.linkedin.com/in/malalasoifer) | [Portfolio](https://www.malalasoifer.com/)
